@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function MainPage() {
     const [products, setProducts] = React.useState([]);
     React.useEffect(
-        function (){
+        function () {
             axios.get("https://9b39fdc7-149a-460d-8bcd-6357c7e1887c.mock.pstmn.io/products")
                 .then(function (result) {
                     const products = result.data.products;
@@ -19,23 +19,16 @@ function MainPage() {
 
     return (
         <div>
-            <div id="header">
-                <div id="header-area">
-                    <img src="./images/icons/logo.png" alt=""/>
-                </div>
+            <div id="banner">
+                <img src="images/banners/banner1.png"/>
             </div>
-
-            <div id="body">
-                <div id="banner">
-                    <img src="images/banners/banner1.png"/>
-                </div>
-                <h1>판매되는 상품들</h1>
-                <div id="product-list">
-                    {
-                        products.map(function (product, index) {
-                            return (
-                                <div className="product-card" key={index}>
-                                    <Link className="product-link" to={`/products/${index}`}>
+            <h1>판매되는 상품들</h1>
+            <div id="product-list">
+                {
+                    products.map(function (product, index) {
+                        return (
+                            <div className="product-card" key={index}>
+                                <Link className="product-link" to={`/products/${product.id}`}>
                                     <div>
                                         <img
                                             className="product-img"
@@ -56,13 +49,10 @@ function MainPage() {
                                             {product.seller}
                                         </span>
                                     </div>
-                                    </Link>
-                                </div>
-                            );
-                        })}
-                </div>
-            </div>
-            <div id="footer">
+                                </Link>
+                            </div>
+                        );
+                    })}
             </div>
         </div>
     );
