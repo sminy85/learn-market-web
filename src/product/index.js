@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import './index.css';
 import {API_URL} from '../config/constants.js';
-
+import dayjs from 'dayjs';
 
 function ProductPage() {
     const {id} = useParams();
@@ -23,7 +23,7 @@ function ProductPage() {
     return (
         <div>
             <div id="image-box">
-                <img src={"/"+product.imageUrl} alt="product image" />
+                <img src={`${API_URL}/${product.imageUrl}`} alt="product image" />
             </div>
             <div id="profile-box">
                 <img src={"/images/icons/avatar.png"} alt="avatar image"/>
@@ -32,8 +32,8 @@ function ProductPage() {
             <div id="contents-box">
                 <div id="name">{product.name}</div>
                 <div id="price">{product.price}원</div>
-                <div id="createAt">2021년 03월 27일</div>
-                <div id="description">{product.description}</div>
+                <div id="createAt">{dayjs(product.createdAt).format('YYYY년 MM월 DD일')}</div>
+                <pre id="description">{product.description}</pre>
             </div>
         </div>
     );
