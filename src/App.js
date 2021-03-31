@@ -21,7 +21,7 @@ function App() {
                     </Link>
                     <Button size="large"
                     onClick={function (){
-                        history.push('/upload');
+                        history.push('/uploads');
                     }} icon={<DownloadOutlined />}
                     >
                         상품 업로드
@@ -33,7 +33,7 @@ function App() {
                     <Route exact={true} path={"/"}>
                         <MainPageComponent/>
                     </Route>
-                    <Route exact={true} path={"/upload"}>
+                    <Route exact={true} path={"/uploads"}>
                         <UploadPage/>
                     </Route>
                     <Route exact={true} path={"/products/:id"}>
